@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public class Jumper extends Image {
 
-    private fianl static int WIDHT = 70;
-    private fianl static int HEIGHT = 100;
+    private final static int WIDHT = 70;
+    private final static int HEIGHT = 100;
 
-    private fianl static int STARTING_X = 0;
-    private fianl static int STARTING_Y = 0;
+    private final static int STARTING_X = 200;
+    private final static int STARTING_Y = 200;
 
     public Jumper() {
         super(new Texture("plik.png"));
@@ -23,7 +23,5 @@ public class Jumper extends Image {
         this.setPosition(STARTING_X,STARTING_Y);
     }
 
-    public Texture getTextura() {
-        return textura;
-    }
+
 }
