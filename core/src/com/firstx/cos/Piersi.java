@@ -25,7 +25,7 @@ public class Piersi extends Game {
 //    private Jumper jumper1, jumper2;
 //    private float timeHelper;
 //
-//    private Music music;
+   private Music music;
 //    private Sound sound;
 //    //  private int ale=0;
 
@@ -36,8 +36,8 @@ public class Piersi extends Game {
 //        font = new BitmapFont();
 //        font.setColor(Color.BLUE);
 //        camera = new OrthographicCamera(1600, 900);
-//        music = Gdx.audio.newMusic(Gdx.files.internal("hymn.mp3"));
-//        music.play();
+        music = Gdx.audio.newMusic(Gdx.files.internal("hymn.mp3"));
+        music.play();
 //        sound = Gdx.audio.newSound(Gdx.files.internal("Jump.ogg"));
 //
 ////        jumper1 = new Jumper(texture);
@@ -102,12 +102,12 @@ public class Piersi extends Game {
 //
 //    }
 //
-//    @Override
-//    public void dispose() {
+   @Override
+    public void dispose() {
 //        font.dispose();
-//        music.dispose();
+    music.dispose();
 //        sound.dispose();
-//    }
+   }
     /*
     -
     getters & setters
