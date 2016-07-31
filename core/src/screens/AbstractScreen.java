@@ -24,7 +24,10 @@ public abstract class AbstractScreen implements Screen {
         stage = new Stage(new StretchViewport(Piersi.WIDTH,Piersi.HEIGHT,camera));
         spriteBatch = new SpriteBatch();
         Gdx.input.setInputProcessor(stage);
+        init();
     }
+
+    protected abstract void init();
 
 
     private void createCamera() {
@@ -38,6 +41,7 @@ public abstract class AbstractScreen implements Screen {
         claerScreen();
         camera.update();
         spriteBatch.setProjectionMatrix(camera.combined);
+        
     }
 
     @Override

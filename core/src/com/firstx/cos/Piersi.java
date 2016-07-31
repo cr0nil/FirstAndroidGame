@@ -4,13 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import screens.SplashScreen;
 
@@ -59,39 +52,7 @@ public class Piersi extends Game {
 //
 //
 //    public void update() {
-//        camera.update();
-////        batch.setProjectionMatrix(camera.combined);
-////        camera.position.set(jumper1.x + jumper1.width / 2, jumper1.y + jumper1.height / 2, 0);
-//
-//        //  if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-//        //      camera.zoom += 0.02f;
-//        // }
-//        // if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)) {
-//        //    camera.zoom -= 0.02f;
-//        //  }
-//
-//
-//        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-//            jumper1.x += 300 * Gdx.graphics.getDeltaTime();
-//        }
-//        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-//            jumper1.x -= 300 * Gdx.graphics.getDeltaTime();
-//        }
-//        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-//            jumper1.y -= 300 * Gdx.graphics.getDeltaTime();
-//
-//        }
-//        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-//            jumper1.y += 300 * Gdx.graphics.getDeltaTime();
-//
-//        }
-//        if (jumper1.overlaps(jumper2)) {
-//            sound.play(); //kolizja
-//            jumper1.x = 0;
-//            jumper1.y = 0;
-//
-//            // ale++;
-//        }
+
 //
 //        timeHelper += Gdx.graphics.getDeltaTime();
 //        //if (timeHelper > 0.02f) {

@@ -3,7 +3,6 @@ package screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.firstx.cos.Piersi;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by Karol on 27.07.2016.
@@ -18,12 +17,12 @@ public class SplashScreen extends AbstractScreen {
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                game.setScreen(new GamepalyScreen(game));
+                game.setScreen(new GameplayScreen(game));
             }
         }, 2);
     }
-
-    private void init() {
+    @Override
+    protected void init() {
         splashImg = new Texture("plik.png");
 
     }
@@ -32,7 +31,7 @@ public class SplashScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         spriteBatch.begin();
-        spriteBatch.draw(splashImg, 0, 0);
+        spriteBatch.draw(splashImg, 240, 0);
         spriteBatch.end();
     }
 }

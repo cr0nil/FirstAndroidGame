@@ -8,15 +8,16 @@ import entities.Jumper;
 /**
  * Created by Karol on 28.07.2016.
  */
-public class GamepalyScreen extends AbstractScreen {
+public class GameplayScreen extends AbstractScreen {
 
     private Jumper jumper;
-    public GamepalyScreen(Piersi game) {
+
+    public GameplayScreen(Piersi game) {
         super(game);
-        init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         initPlayer();
     }
 
