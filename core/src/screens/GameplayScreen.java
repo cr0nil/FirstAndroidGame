@@ -1,8 +1,12 @@
 package screens;
 
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
@@ -15,6 +19,7 @@ public class GameplayScreen extends AbstractScreen {
 
     private Jumper jumper;
     private Button playerButton;
+    private Label pointsLabel;
 
     public GameplayScreen(Piersi game) {
         super(game);
@@ -24,6 +29,16 @@ public class GameplayScreen extends AbstractScreen {
     protected void init() {
         initPlayer();
         initPlayerButton();
+        initPointsLabel();
+    }
+
+    private void initPointsLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont();
+        pointsLabel = new Label("",labelStyle);
+        pointsLabel.setX(350);
+        pointsLabel.setY(650);
+        stage.addActor(pointsLabel);
     }
 
     private void initPlayerButton() {
@@ -62,6 +77,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void update() {
+        pointsLabel.setText("Score :"+ game.getPoints());
         stage.act();
     }
 }
