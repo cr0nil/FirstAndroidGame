@@ -28,11 +28,11 @@ public class GameplayScreen extends AbstractScreen {
 
     private void initPlayerButton() {
         playerButton = new Button(new Button.ButtonStyle());
-        playerButton.setWidth(460);
-        playerButton.setHeight(360);
-        playerButton.setX(100);
-        playerButton.setY(100);
-        playerButton.setDebug(true);
+        playerButton.setWidth(480);
+        playerButton.setHeight(700);
+        playerButton.setX(0);
+        playerButton.setY(0);
+        playerButton.setDebug(false);
         stage.addActor(playerButton);
 
         playerButton.addListener(new ClickListener() {
@@ -40,6 +40,9 @@ public class GameplayScreen extends AbstractScreen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 jumper.reactiOnClick();
+
+                game.addPoint();// zmienic na dodwanie w przypadku kolizji
+
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
