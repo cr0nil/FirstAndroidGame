@@ -36,6 +36,7 @@ public class GameplayScreen extends AbstractScreen {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
         pointsLabel = new Label("",labelStyle);
+
         pointsLabel.setX(350);
         pointsLabel.setY(650);
         stage.addActor(pointsLabel);
