@@ -29,6 +29,7 @@ public class Piersi extends Game {
 //        sound = Gdx.audio.newSound(Gdx.files.internal("Jump.ogg"));
 
     }
+
     private void init() {
         prefs = Gdx.app.getPreferences(GAME_PREFS);
         loadScore();
@@ -41,17 +42,26 @@ public class Piersi extends Game {
     public int getPoints() {
         return points;
     }
-    public void addPoint(){
+
+    public void addPoint() {
         points++;
-        prefs.putInteger(GAME_SCORE,points);
+        updateScore();
+    }
+
+
+    public void restGameScore() {
+        points = 0;
+        updateScore();
+    }
+
+    private void updateScore() {
+        prefs.putInteger(GAME_SCORE, points);
         prefs.flush();
     }
 
-   private Music music;
+    private Music music;
 //    private Sound sound;
 //    //  private int ale=0;
-
-
 
 
 //    public void update() {
@@ -63,12 +73,13 @@ public class Piersi extends Game {
 //        //   }
 //
 //    }
-   @Override
+
+    @Override
     public void dispose() {
 
-    music.dispose();
+        music.dispose();
 //        sound.dispose();
-   }
+    }
     /*
     -
     getters & setters
@@ -81,4 +92,6 @@ public class Piersi extends Game {
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
+
+
 }

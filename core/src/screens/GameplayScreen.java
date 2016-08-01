@@ -19,6 +19,7 @@ public class GameplayScreen extends AbstractScreen {
 
     private Jumper jumper;
     private Button playerButton;
+    private Button resetScoreButton;
     private Label pointsLabel;
 
     public GameplayScreen(Piersi game) {
@@ -30,17 +31,28 @@ public class GameplayScreen extends AbstractScreen {
         initPlayer();
         initPlayerButton();
         initPointsLabel();
+        initRestScoreButton();
     }
 
-    private void initPointsLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        pointsLabel = new Label("",labelStyle);
+    private void initRestScoreButton() {
+        resetScoreButton = new Button(new Button.ButtonStyle());
+        resetScoreButton.setWidth(100);
+        resetScoreButton.setHeight(100);
+        resetScoreButton.setX(0);
+        resetScoreButton.setY(600);
+        resetScoreButton.setDebug(true);
+        stage.addActor(resetScoreButton);
 
-        pointsLabel.setX(350);
-        pointsLabel.setY(650);
-        stage.addActor(pointsLabel);
+        resetScoreButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            game.restGameScore();
+
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
     }
+
 
     private void initPlayerButton() {
         playerButton = new Button(new Button.ButtonStyle());
@@ -62,7 +74,19 @@ public class GameplayScreen extends AbstractScreen {
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+
     }
+
+    private void initPointsLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont();
+        pointsLabel = new Label("", labelStyle);
+
+        pointsLabel.setX(370);
+        pointsLabel.setY(660);
+        stage.addActor(pointsLabel);
+    }
+
     private void initPlayer() {
         jumper = new Jumper();
         stage.addActor(jumper);
@@ -78,7 +102,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void update() {
-        pointsLabel.setText("Score :"+ game.getPoints());
+        pointsLabel.setText("Score :" + game.getPoints());
         stage.act();
     }
 }
