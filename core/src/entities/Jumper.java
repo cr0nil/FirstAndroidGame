@@ -1,6 +1,7 @@
 package entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -30,12 +31,15 @@ public class Jumper extends Image {
     public void reactiOnClick() {
 
         int los = MathUtils.random(-60,60);
-        Action testAction = Actions.sequence(
-                Actions.moveBy(los,10),
-                Actions.moveBy(-los,-10,0.20f),
-                Actions.rotateBy(360,0.5f));
+        Action moveAction = Actions.sequence(
+                Actions.moveBy(los,10,0, Interpolation.bounce),
+                Actions.moveBy(-los,-10,2,Interpolation.circle) );
+        Action rotationAction= Actions.sequence(
+                Actions.rotateBy(70,0.2f),
+                Actions.rotateBy(-140,0.2f),
+                Actions.rotateBy(70,0.2f));
 
-
-        this.addAction(testAction);
+        this.addAction(rotationAction);
+        this.addAction(moveAction);
     }
 }
