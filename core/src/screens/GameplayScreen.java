@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
+import UserInterface_UI.IClickCallback;
+import UserInterface_UI.PlayerButton;
 import entities.Jumper;
 
 /**
@@ -54,27 +56,20 @@ public class GameplayScreen extends AbstractScreen {
 
 
     private void initPlayerButton() {
-        playerButton = new Button(new Button.ButtonStyle());
-        playerButton.setWidth(480);
-        playerButton.setHeight(700);
-        playerButton.setX(0);
-        playerButton.setY(0);
-        playerButton.setDebug(false);
-        stage.addActor(playerButton);
-
-        playerButton.addListener(new ClickListener() {
-
+        playerButton = new PlayerButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 jumper.reactiOnClick();
 
                 game.addPoint();// zmienic na dodwanie w przypadku kolizji
-
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+        stage.addActor(playerButton);
 
-    }
+
+        }
+
+
 
     private void initPointsLabel() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
