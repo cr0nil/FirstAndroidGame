@@ -1,16 +1,13 @@
 package screens;
 
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
 import UserInterface_UI.IClickCallback;
 import UserInterface_UI.PlayerButton;
+import UserInterface_UI.PointsLabel;
+import UserInterface_UI.RestScoreButton;
 import entities.Jumper;
 
 /**
@@ -19,9 +16,9 @@ import entities.Jumper;
 public class GameplayScreen extends AbstractScreen {
 
     private Jumper jumper;
-    private Button playerButton;
-    private Button resetScoreButton;
-    private Label pointsLabel;
+    private PlayerButton playerButton;
+    private RestScoreButton resetScoreButton;
+    private PointsLabel pointsLabel;
 
     public GameplayScreen(Piersi game) {
         super(game);
@@ -36,22 +33,15 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initRestScoreButton() {
-        resetScoreButton = new Button(new Button.ButtonStyle());
-        resetScoreButton.setWidth(100);
-        resetScoreButton.setHeight(100);
-        resetScoreButton.setX(0);
-        resetScoreButton.setY(600);
-        resetScoreButton.setDebug(true);
-        stage.addActor(resetScoreButton);
-
-        resetScoreButton.addListener(new ClickListener() {
+        resetScoreButton = new RestScoreButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            game.restGameScore();
-
-                return super.touchDown(event, x, y, pointer, button);
+            public void onClick() {
+                game.restGameScore();
             }
         });
+        stage.addActor(resetScoreButton);
+
+
     }
 
 
@@ -67,17 +57,11 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(playerButton);
 
 
-        }
-
+    }
 
 
     private void initPointsLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        pointsLabel = new Label("", labelStyle);
-
-        pointsLabel.setX(370);
-        pointsLabel.setY(660);
+        pointsLabel = new PointsLabel();
         stage.addActor(pointsLabel);
     }
 
