@@ -2,6 +2,7 @@ package screens;
 
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.firstx.cos.Piersi;
 
@@ -16,7 +17,7 @@ import entities.Jumper;
  */
 public class GameplayScreen extends AbstractScreen {
 
-    private Texture bgImg;
+    private Image bgImg;
     private Jumper jumper;
     private PlayerButton playerButton;
     private RestScoreButton resetScoreButton;
@@ -28,12 +29,18 @@ public class GameplayScreen extends AbstractScreen {
 
     @Override
     protected void init() {
-        bgImg = new Texture("1222.gif");
+
+        initBgImg();
         initPlayer();
         initPlayerButton();
         initPointsLabel();
         initRestScoreButton();
 
+    }
+
+    private void initBgImg() {
+        bgImg = new Image(new Texture("1222.gif"));
+        stage.addActor(bgImg);
     }
 
     private void initRestScoreButton() {
@@ -78,9 +85,7 @@ public class GameplayScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         update();
-        spriteBatch.begin();
-        spriteBatch.draw(bgImg,0,0);
-        spriteBatch.end();
+
 
         spriteBatch.begin();
         stage.draw();
