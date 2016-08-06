@@ -23,7 +23,7 @@ public class SplashScreen extends AbstractScreen {
     }
     @Override
     protected void init() {
-        splashImg = new Texture("plik.png");
+        splashImg = new Texture("jcj.jpg");
 
     }
 
@@ -31,7 +31,7 @@ public class SplashScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         spriteBatch.begin();
-        spriteBatch.draw(splashImg, 240, 0);
+        spriteBatch.draw(splashImg, 0, 0);
         spriteBatch.end();
     }
 }
