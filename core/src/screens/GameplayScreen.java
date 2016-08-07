@@ -3,13 +3,13 @@ package screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.firstx.cos.Piersi;
 
 import UserInterface_UI.IClickCallback;
 import UserInterface_UI.PlayerButton;
 import UserInterface_UI.PointsLabel;
 import UserInterface_UI.RestScoreButton;
+import entities.FlyingObject;
 import entities.Jumper;
 
 /**
@@ -22,6 +22,7 @@ public class GameplayScreen extends AbstractScreen {
     private PlayerButton playerButton;
     private RestScoreButton resetScoreButton;
     private PointsLabel pointsLabel;
+    private FlyingObject flyObj;
 
     public GameplayScreen(Piersi game) {
         super(game);
@@ -31,11 +32,18 @@ public class GameplayScreen extends AbstractScreen {
     protected void init() {
 
         initBgImg();
-        initPlayer();
+        initJumper();
         initPlayerButton();
         initPointsLabel();
         initRestScoreButton();
+        initFlyObj();
 
+    }
+
+    private void initFlyObj() {
+        flyObj = new FlyingObject(FlyingObject.TITS);
+        stage.addActor(flyObj);
+        flyObj.fly();
     }
 
     private void initBgImg() {
@@ -76,7 +84,7 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(pointsLabel);
     }
 
-    private void initPlayer() {
+    private void initJumper() {
         jumper = new Jumper();
         stage.addActor(jumper);
     }
