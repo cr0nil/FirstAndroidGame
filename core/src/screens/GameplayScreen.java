@@ -10,6 +10,7 @@ import UserInterface_UI.PlayerButton;
 import UserInterface_UI.PointsLabel;
 import UserInterface_UI.RestScoreButton;
 import entities.FlyingObject;
+import entities.FlyingObject.FlyingObjectType;
 import entities.Jumper;
 
 /**
@@ -41,7 +42,7 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initFlyObj() {
-        flyObj = new FlyingObject(FlyingObject.TITS);
+        flyObj = new FlyingObject(FlyingObjectType.PASSIVE, game);
         stage.addActor(flyObj);
         flyObj.fly();
     }
@@ -63,6 +64,10 @@ public class GameplayScreen extends AbstractScreen {
 
     }
 
+    private void initPointsLabel() {
+        pointsLabel = new PointsLabel();
+        stage.addActor(pointsLabel);
+    }
 
     private void initPlayerButton() {
         playerButton = new PlayerButton(new IClickCallback() {
@@ -76,12 +81,6 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(playerButton);
 
 
-    }
-
-
-    private void initPointsLabel() {
-        pointsLabel = new PointsLabel();
-        stage.addActor(pointsLabel);
     }
 
     private void initJumper() {

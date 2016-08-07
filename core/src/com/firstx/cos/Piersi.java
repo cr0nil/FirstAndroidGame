@@ -39,10 +39,11 @@ public class Piersi extends Game {
         points = prefs.getInteger(GAME_SCORE);
     }
 
-    public int getPoints() {
-        return points;
-    }
 
+    public void addPoints(int pointsToAdd) {
+        points +=pointsToAdd;
+        updateScore();
+    }
     public void addPoint() {
         points++;
         updateScore();
@@ -58,7 +59,9 @@ public class Piersi extends Game {
         prefs.putInteger(GAME_SCORE, points);
         prefs.flush();
     }
+    public void addPassiveIncome() {
 
+    }
     private Music music;
 //    private Sound sound;
 //    //  private int ale=0;
@@ -94,4 +97,8 @@ public class Piersi extends Game {
     }
 
 
+
+    public int getPoints() {
+        return points;
+    }
 }
