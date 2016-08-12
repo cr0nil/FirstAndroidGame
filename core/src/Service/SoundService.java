@@ -16,7 +16,7 @@ public class SoundService {
     }
 
     private void init() {
-        boobsSound = Gdx.audio.newSound(Gdx.files.internal("sound/yeah.mp3"));
+        boobsSound = Gdx.audio.newSound(Gdx.files.internal("sound/oh.ogg"));
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/hymn.mp3"));
     }
 
