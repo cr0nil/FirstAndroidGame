@@ -5,8 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.firstx.cos.Piersi;
 
+import Controllers.FlyingObjController;
 import UserInterface_UI.IClickCallback;
 import UserInterface_UI.PlayerButton;
+import UserInterface_UI.PlayerButtonRight;
 import UserInterface_UI.PointsLabel;
 import UserInterface_UI.RestScoreButton;
 import entities.FlyingObject;
@@ -21,9 +23,10 @@ public class GameplayScreen extends AbstractScreen {
     private Image bgImg;
     private Jumper jumper;
     private PlayerButton playerButton;
+    private PlayerButtonRight playerButtonRight;
     private RestScoreButton resetScoreButton;
     private PointsLabel pointsLabel;
-    private FlyingObject flyObj;
+    private FlyingObjController flyObj;
 
     public GameplayScreen(Piersi game) {
         super(game);
@@ -35,16 +38,34 @@ public class GameplayScreen extends AbstractScreen {
         initBgImg();
         initJumper();
         initPlayerButton();
+        initPlayerButtonRight();
         initPointsLabel();
         initRestScoreButton();
         initFlyObj();
+        startTheMusic();
+
+    }
+
+    private void startTheMusic() {
+        game.getSoundService().startPlayingMusic(true);
+    }
+
+    private void initPlayerButtonRight() {
+        playerButtonRight = new PlayerButtonRight(new IClickCallback() {
+            @Override
+            public void onClick() {
+                jumper.reactiOnClickRight();
+
+                game.addPoint();// zmienic na dodwanie w przypadku kolizji
+            }
+        });
+        stage.addActor(playerButtonRight);
 
     }
 
     private void initFlyObj() {
-        flyObj = new FlyingObject(FlyingObjectType.PASSIVE, game);
-        stage.addActor(flyObj);
-        flyObj.fly();
+        flyObj = new FlyingObjController(game,stage);
+
     }
 
     private void initBgImg() {

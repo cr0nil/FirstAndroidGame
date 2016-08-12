@@ -1,23 +1,24 @@
 package UserInterface_UI;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
- * Created by Karol on 03.08.2016.
+ * Created by Karol on 10.08.2016.
  */
-public class PlayerButton extends Button {
-    public PlayerButton(final IClickCallback callback) {
-    super(new ButtonStyle());
-    init(callback);
-}
+public class PlayerButtonRight extends Button {
+    public PlayerButtonRight(final IClickCallback callback) {
+        super(new ButtonStyle());
+        init(callback);
+    }
 
 
     private void init(final IClickCallback callback) {
         this.setWidth(240);
         this.setHeight(700);
-        this.setX(0);
+        this.setX(240);
         this.setY(0);
         this.setDebug(false);
 
@@ -29,6 +30,5 @@ public class PlayerButton extends Button {
             }
 
         } );
-        }
     }
-
+}

@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.StreamUtils;
 import com.firstx.cos.Piersi;
 
 /**
@@ -39,7 +38,8 @@ public class FlyingObject extends Image {
         this.game = game;
         this.setOrigin(WIDHT / 2, HEIGHT / 2);
         this.setSize(WIDHT, HEIGHT);
-
+        playSpawnSound();
+//
         startingX = MathUtils.randomBoolean() ? STARTING_X_1 : STARTING_X_2;
         this.setPosition(startingX, STARTING_Y);
 
@@ -53,11 +53,17 @@ public class FlyingObject extends Image {
         });
     }
 
+    private void playSpawnSound() {
+        if (FlyingObjectType.TITS.equals(type)){
+        game.getSoundService().playBoobsSound();
+        }    // wprzypadku kolizji
+    }
+
     private void reactOnClick() {
         if (FlyingObjectType.TITS.equals(type)) {
             game.addPoints(50);
         } else if (FlyingObjectType.PASSIVE.equals(type)) {
-            game.addpPassivIncome();
+            game.addPassiveIncome();
         }
         FlyingObject.this.remove();
     }
@@ -86,10 +92,10 @@ public class FlyingObject extends Image {
             xSing = -1;
         }
         Action a = Actions.parallel(
-                Actions.moveBy(300 * xSing + MathUtils.random(-170, 170), -400+randomYef, time1),
+                Actions.moveBy(300 * xSing + MathUtils.random(-170, 170), -400 + randomYef, time1),
                 Actions.rotateBy(360, time1)
         );
-        Action b =MathUtils.randomBoolean()? Actions.parallel(): Actions.parallel(
+        Action b = MathUtils.randomBoolean() ? Actions.parallel() : Actions.parallel(
                 Actions.moveBy(-100 * xSing + MathUtils.random(-70, 70), 70, time2),
                 Actions.rotateBy(360, time2)
         );
@@ -103,6 +109,6 @@ public class FlyingObject extends Image {
                 FlyingObject.this.remove();
             }
         });
-        this.addAction(Actions.sequence(a, b,c , d));
+        this.addAction(Actions.sequence(a, b, c, d));
     }
 }

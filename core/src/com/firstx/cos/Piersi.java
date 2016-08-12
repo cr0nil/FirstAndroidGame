@@ -4,7 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 
+import Service.SoundService;
 import screens.SplashScreen;
 
 public class Piersi extends Game {
@@ -13,6 +15,11 @@ public class Piersi extends Game {
     public final static String GAME_SCORE = "com.prefsfirstx.cos.pref.score";
     public final static int WIDTH = 480;
     public final static int HEIGHT = 700;
+
+
+    private SoundService soundService;
+
+
     private boolean paused;
 
     private Preferences prefs;
@@ -24,16 +31,21 @@ public class Piersi extends Game {
         init();
         this.setScreen(new SplashScreen(this));
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("hymn.mp3"));
-        music.play();
-//        sound = Gdx.audio.newSound(Gdx.files.internal("Jump.ogg"));
 
+       // music.play();
     }
+
 
     private void init() {
         prefs = Gdx.app.getPreferences(GAME_PREFS);
         loadScore();
+        initSoundService();
     }
+
+    private void initSoundService() {
+        soundService = new SoundService();
+    }
+
 
     private void loadScore() {
         points = prefs.getInteger(GAME_SCORE);
@@ -41,9 +53,10 @@ public class Piersi extends Game {
 
 
     public void addPoints(int pointsToAdd) {
-        points +=pointsToAdd;
+        points += pointsToAdd;
         updateScore();
     }
+
     public void addPoint() {
         points++;
         updateScore();
@@ -59,10 +72,11 @@ public class Piersi extends Game {
         prefs.putInteger(GAME_SCORE, points);
         prefs.flush();
     }
-    public void addPassiveIncome() {
 
+    public void addPassiveIncome() {
+        System.out.println("asd");
     }
-    private Music music;
+
 //    private Sound sound;
 //    //  private int ale=0;
 
@@ -77,12 +91,12 @@ public class Piersi extends Game {
 //
 //    }
 
-    @Override
-    public void dispose() {
-
-        music.dispose();
-//        sound.dispose();
-    }
+//    @Override
+//    public void dispose() {
+//
+//        //music.dispose();
+////        sound.dispose();
+//    }
     /*
     -
     getters & setters
@@ -96,7 +110,9 @@ public class Piersi extends Game {
         this.paused = paused;
     }
 
-
+    public SoundService getSoundService() {
+        return soundService;
+    }
 
     public int getPoints() {
         return points;
