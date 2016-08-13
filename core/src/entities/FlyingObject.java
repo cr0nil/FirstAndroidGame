@@ -61,9 +61,9 @@ public class FlyingObject extends Image {
 
     private void reactOnClick() {
         if (FlyingObjectType.TITS.equals(type)) {
-            game.addPoints(50);
+            game.getScoreService().addPoints(50);
         } else if (FlyingObjectType.PASSIVE.equals(type)) {
-            game.addPassiveIncome();
+            game.getScoreService().addPassiveIncome();
         }
         FlyingObject.this.remove();
     }
@@ -81,7 +81,7 @@ public class FlyingObject extends Image {
 
         int xSing = 0;
         int randomYef = MathUtils.random(-200, 100);
-        float time1 = MathUtils.random(1.7f, 5);
+        float time1 = MathUtils.random(1.7f, 4.5f);
         float time2 = MathUtils.random(0.2f, 1);
         float time3 = MathUtils.random(1.7f, 5);
 

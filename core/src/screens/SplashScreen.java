@@ -19,19 +19,25 @@ public class SplashScreen extends AbstractScreen {
             public void run() {
                 game.setScreen(new GameplayScreen(game));
             }
-        }, 2);
+        }, 3);
     }
     @Override
     protected void init() {
         splashImg = new Texture("jcj.jpg");
+        WelcomeSound();
 
     }
+
 
     @Override
     public void render(float delta) {
         super.render(delta);
         spriteBatch.begin();
-        spriteBatch.draw(splashImg, 0, 0);
+        spriteBatch.draw(splashImg,0, 0);
         spriteBatch.end();
+    }
+
+    private void WelcomeSound(){
+        game.getSoundService().playWelcomeSound();
     }
 }

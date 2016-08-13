@@ -43,7 +43,19 @@ public class GameplayScreen extends AbstractScreen {
         initRestScoreButton();
         initFlyObj();
         startTheMusic();
+    }
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+        update();
 
+        spriteBatch.begin();
+        stage.draw();
+        spriteBatch.end();
+    }
+    private void update() {
+        pointsLabel.setText("Score :" + game.getScoreService().getPoints());
+        stage.act();
     }
 
     private void startTheMusic() {
@@ -56,16 +68,14 @@ public class GameplayScreen extends AbstractScreen {
             public void onClick() {
                 jumper.reactiOnClickRight();
 
-                game.addPoint();// zmienic na dodwanie w przypadku kolizji
+                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
         });
         stage.addActor(playerButtonRight);
-
     }
 
     private void initFlyObj() {
-        flyObj = new FlyingObjController(game,stage);
-
+        flyObj = new FlyingObjController(game, stage);
     }
 
     private void initBgImg() {
@@ -77,12 +87,10 @@ public class GameplayScreen extends AbstractScreen {
         resetScoreButton = new RestScoreButton(new IClickCallback() {
             @Override
             public void onClick() {
-                game.restGameScore();
+                game.getScoreService().restGameScore();
             }
         });
         stage.addActor(resetScoreButton);
-
-
     }
 
     private void initPointsLabel() {
@@ -96,11 +104,10 @@ public class GameplayScreen extends AbstractScreen {
             public void onClick() {
                 jumper.reactiOnClick();
 
-                game.addPoint();// zmienic na dodwanie w przypadku kolizji
+                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
         });
         stage.addActor(playerButton);
-
 
     }
 
@@ -109,19 +116,4 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(jumper);
     }
 
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-        update();
-
-
-        spriteBatch.begin();
-        stage.draw();
-        spriteBatch.end();
-    }
-
-    private void update() {
-        pointsLabel.setText("Score :" + game.getPoints());
-        stage.act();
-    }
 }

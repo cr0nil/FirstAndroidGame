@@ -9,6 +9,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundService {
     private Sound boobsSound;
+    private Sound welcomeSound;
     private Music music;
     public SoundService() {
         init();
@@ -18,10 +19,14 @@ public class SoundService {
     private void init() {
         boobsSound = Gdx.audio.newSound(Gdx.files.internal("sound/oh.ogg"));
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/hymn.mp3"));
+        welcomeSound =  Gdx.audio.newSound(Gdx.files.internal("sound/EA.wav"));
     }
 
     public void playBoobsSound(){
         boobsSound.play();
+    }
+    public void playWelcomeSound(){
+        welcomeSound.play();
     }
 
     public void startPlayingMusic(boolean looped) {
