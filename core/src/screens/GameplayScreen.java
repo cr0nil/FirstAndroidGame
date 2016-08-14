@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.firstx.cos.Piersi;
 
 import Controllers.FlyingObjController;
+import Service.PassiveIncomeService;
 import UserInterface_UI.IClickCallback;
 import UserInterface_UI.PlayerButton;
 import UserInterface_UI.PlayerButtonRight;
@@ -27,6 +28,7 @@ public class GameplayScreen extends AbstractScreen {
     private RestScoreButton resetScoreButton;
     private PointsLabel pointsLabel;
     private FlyingObjController flyObj;
+    private PassiveIncomeService passiveIncomeService;
 
     public GameplayScreen(Piersi game) {
         super(game);
@@ -43,7 +45,10 @@ public class GameplayScreen extends AbstractScreen {
         initRestScoreButton();
         initFlyObj();
         startTheMusic();
+        initPassivIncomeService();
     }
+
+
     @Override
     public void render(float delta) {
         super.render(delta);
@@ -56,6 +61,12 @@ public class GameplayScreen extends AbstractScreen {
     private void update() {
         pointsLabel.setText("Score :" + game.getScoreService().getPoints());
         stage.act();
+    }
+
+    private void initPassivIncomeService() {
+        passiveIncomeService = new PassiveIncomeService(game.getScoreService());
+        passiveIncomeService.start();
+
     }
 
     private void startTheMusic() {
