@@ -32,7 +32,6 @@ public class ScoreService {
     }
 
 
-
     private void loadPassieIncome() {
         passsivIncome = prefs.getInteger(GAME_PASSIV_INCOME);
     }
@@ -78,7 +77,7 @@ public class ScoreService {
         return passsivIncome;
     }
 
-    public long getSavedTimestamp() {
+    public  long getSavedTimestamp() {
         return prefs.getLong(GAME_SAVED_TIMESTAMP);
     }
 
