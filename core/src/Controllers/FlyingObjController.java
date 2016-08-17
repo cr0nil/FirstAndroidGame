@@ -12,8 +12,9 @@ import entities.FlyingObject;
  */
 public class FlyingObjController {
     public int spawnTime;
-    public FlyingObjController(Piersi game, Stage stage){
-        init(game,stage);
+
+    public FlyingObjController(Piersi game, Stage stage) {
+        init(game, stage);
     }
 
     private void init(final Piersi game, final Stage stage) {
@@ -24,27 +25,27 @@ public class FlyingObjController {
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
-                        addRandomFlyingObjToStage(game,stage);
+                        addRandomFlyingObjToStage(game, stage);
                         randomizeSpawnTime();
 
                     }
 
 
-                },spawnTime);
+                }, spawnTime);
             }
-        },0,5);
+        }, 0, 5);
     }
 
     private void randomizeSpawnTime() {
-        spawnTime = MathUtils.random(3,6);
+        spawnTime = MathUtils.random(3, 6);
     }
+
     private void addRandomFlyingObjToStage(Piersi game, Stage stage) {
         FlyingObject flyingObject = null;
-        if (MathUtils.randomBoolean()){
-            flyingObject= new FlyingObject(FlyingObject.FlyingObjectType.TITS,game);
-        }
-        else {
-            flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE,game);
+        if (MathUtils.randomBoolean()) {
+            flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.TITS, game);
+        } else {
+            flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE, game);
         }
         stage.addActor(flyingObject);
         flyingObject.fly();

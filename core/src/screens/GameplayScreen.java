@@ -1,8 +1,10 @@
 package screens;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
 import Controllers.FlyingObjController;
@@ -62,7 +64,7 @@ public class GameplayScreen extends AbstractScreen {
     @Override
     public void pause() {
         super.pause();
-        game.getScoreService().saveCurrentTimestemp();
+        game.getScoreService().saveCurrentGameState();
     }
 
     private void update() {
@@ -85,6 +87,7 @@ public class GameplayScreen extends AbstractScreen {
             @Override
             public void onClick() {
                 jumper.reactiOnClickRight();
+
 
                 game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
@@ -121,7 +124,9 @@ public class GameplayScreen extends AbstractScreen {
             @Override
             public void onClick() {
                 jumper.reactiOnClick();
-
+                if (Gdx.input.isTouched() == false) {
+                    jumper.reactionBack();
+                }
                 game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
         });
