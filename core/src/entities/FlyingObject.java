@@ -67,6 +67,7 @@ public class FlyingObject extends Image {
             game.getScoreService().addPassiveIncome();
         }
         FlyingObject.this.remove();
+
     }
 
     private static String getTextureString(FlyingObjectType type) {
@@ -85,7 +86,6 @@ public class FlyingObject extends Image {
         float time1 = MathUtils.random(1.7f, 4.5f);
         float time2 = MathUtils.random(0.2f, 1);
         float time3 = MathUtils.random(1.7f, 5);
-
 
         if (startingX == STARTING_X_1) {
             xSing = 1;

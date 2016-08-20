@@ -1,6 +1,7 @@
 package Controllers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.firstx.cos.Piersi;
@@ -49,5 +50,7 @@ public class FlyingObjController {
         }
         stage.addActor(flyingObject);
         flyingObject.fly();
+        //if(flyingObject.overlaps(Piersi.WIDTH))
     }
+
 }
