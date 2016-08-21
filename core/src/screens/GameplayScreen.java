@@ -90,7 +90,13 @@ public class GameplayScreen extends AbstractScreen {
     private void initPassivIncomeInfoDialog() {
         if(passiveIncomeService.getPointsToAdd()>0) {
             dialog = new BasicDialog();
-            dialog.showDialog(stage,"passive income goined: "+passiveIncomeService.getPointsToAdd());
+            dialog.getLabel().setFontScale(1.6f);
+            if(passiveIncomeService.getPointsToAdd()>1000)
+                dialog.getLabel().setFontScale(1.5f);
+            if(passiveIncomeService.getPointsToAdd()>10000)
+                dialog.getLabel().setFontScale(1.3f);
+
+            dialog.showDialog(stage,"passive income goined: \r\n         "+passiveIncomeService.getPointsToAdd());
         }
     }
 

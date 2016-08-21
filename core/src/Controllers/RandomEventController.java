@@ -5,6 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.firstx.cos.Piersi;
 
+import Service.PassiveIncomeService;
+import UserInterface_UI.BasicDialog;
+
 /**
  * Created by Karol on 21.08.2016.
  */
@@ -49,16 +52,24 @@ public class RandomEventController {
         }
     }
 
+    private void tiggerDialog(String text){
+        BasicDialog basicDialog = new BasicDialog();
+        basicDialog.getLabel().setFontScale(2);
+        basicDialog.showDialog(stage,text);
+    }
     private void gainPassiveIncome() {
         game.getScoreService().getPasssivIncome();
+        tiggerDialog("You gained passive income");
     }
 
     private void loseMoneyEvent() {
         game.getScoreService().addPoints(-120);
+        tiggerDialog("You lose points 120");
     }
 
     private void moneyEvent() {
         game.getScoreService().addPoints(120);
+        tiggerDialog("FREE points");
     }
 
 }
