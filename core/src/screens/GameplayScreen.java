@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
 import Controllers.FlyingObjController;
+import Controllers.RandomEventController;
 import Service.PassiveIncomeService;
 import UserInterface_UI.BasicDialog;
 import UserInterface_UI.IClickCallback;
@@ -33,7 +34,7 @@ public class GameplayScreen extends AbstractScreen {
     private FlyingObjController flyObj;
     private PassiveIncomeService passiveIncomeService;
     private BasicDialog dialog;
-
+    private RandomEventController eventController;
     public GameplayScreen(Piersi game) {
         super(game);
     }
@@ -51,6 +52,7 @@ public class GameplayScreen extends AbstractScreen {
         startTheMusic();
         initPassivIncomeService();
         initPassivIncomeInfoDialog();
+        initRandomEventController();
     }
 
     @Override
@@ -63,11 +65,15 @@ public class GameplayScreen extends AbstractScreen {
         spriteBatch.end();
     }
 
-
     @Override
     public void pause() {
         super.pause();
         game.getScoreService().saveCurrentGameState();
+    }
+
+
+    private void initRandomEventController() {
+        eventController = new RandomEventController(game);
     }
 
     private void update() {
