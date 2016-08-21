@@ -1,6 +1,7 @@
 package Controllers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.firstx.cos.Piersi;
 
@@ -11,9 +12,10 @@ public class RandomEventController {
 
     private static final int RANDOM_TICK_INTERVAL = 5;
     private Piersi game;
-
-    public RandomEventController(Piersi game) {
+    private Stage stage;
+    public RandomEventController(Piersi game, Stage stage) {
         this.game = game;
+        this.stage = stage;
         init();
     }
 
@@ -41,7 +43,7 @@ public class RandomEventController {
                 break;
             case 3:
                 gainPassiveIncome();
-                break;;
+                break;
             default:
                 break;
         }

@@ -73,7 +73,7 @@ public class GameplayScreen extends AbstractScreen {
 
 
     private void initRandomEventController() {
-        eventController = new RandomEventController(game);
+        eventController = new RandomEventController(game,stage);
     }
 
     private void update() {
@@ -90,8 +90,7 @@ public class GameplayScreen extends AbstractScreen {
     private void initPassivIncomeInfoDialog() {
         if(passiveIncomeService.getPointsToAdd()>0) {
             dialog = new BasicDialog();
-            stage.addActor(dialog);
-            dialog.initContent("passive income goined: "+passiveIncomeService.getPointsToAdd());
+            dialog.showDialog(stage,"passive income goined: "+passiveIncomeService.getPointsToAdd());
         }
     }
 
