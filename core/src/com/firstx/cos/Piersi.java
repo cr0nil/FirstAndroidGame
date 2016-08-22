@@ -1,15 +1,21 @@
 package com.firstx.cos;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import Controllers.GameScreenController;
 import Service.ScoreService;
 import Service.SoundService;
+import screens.MenuScreen;
 import screens.SplashScreen;
 
 public class Piersi extends Game {
     public final static String GAME_NAME = "FIRST";
     public final static int WIDTH = 480;
     public final static int HEIGHT = 700;
-
+    private GameScreenController gameScreenController;
+    private SpriteBatch batch;
     private SoundService soundService;
     private ScoreService scoreService;
 
@@ -20,8 +26,14 @@ public class Piersi extends Game {
 
         init();
         this.setScreen(new SplashScreen(this));
+
     }
 
+    @Override
+    public void render() {
+        gameScreenController.update(Gdx.graphics.getDeltaTime());
+        gameScreenController.render(batch);
+    }
 
     private void init() {
 
