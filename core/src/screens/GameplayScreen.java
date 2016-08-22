@@ -3,8 +3,8 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstx.cos.Piersi;
 
 import Controllers.FlyingObjController;
@@ -16,8 +16,6 @@ import UserInterface_UI.PlayerButton;
 import UserInterface_UI.PlayerButtonRight;
 import UserInterface_UI.PointsLabel;
 import UserInterface_UI.RestScoreButton;
-import entities.FlyingObject;
-import entities.FlyingObject.FlyingObjectType;
 import entities.Jumper;
 
 /**
@@ -35,6 +33,7 @@ public class GameplayScreen extends AbstractScreen {
     private PassiveIncomeService passiveIncomeService;
     private BasicDialog dialog;
     private RandomEventController eventController;
+
     public GameplayScreen(Piersi game) {
         super(game);
     }
@@ -56,13 +55,12 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     @Override
-    public void render(float delta) {
-        super.render(delta);
+    public void render(SpriteBatch sb) {
         update();
 
-        spriteBatch.begin();
+        this.sb.begin();
         stage.draw();
-        spriteBatch.end();
+        this.sb.end();
     }
 
     @Override
@@ -73,10 +71,11 @@ public class GameplayScreen extends AbstractScreen {
 
 
     private void initRandomEventController() {
-        eventController = new RandomEventController(game,stage);
+        eventController = new RandomEventController(game, stage);
     }
 
-    private void update() {
+    @Override
+    public void update(float dt) {
         pointsLabel.setText("Score :" + game.getScoreService().getPoints());
         stage.act();
     }
@@ -88,16 +87,22 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initPassivIncomeInfoDialog() {
-        if(passiveIncomeService.getPointsToAdd()>0) {
+        if (passiveIncomeService.getPointsToAdd() > 0) {
             dialog = new BasicDialog();
             dialog.getLabel().setFontScale(1.6f);
-            if(passiveIncomeService.getPointsToAdd()>1000)
+            if (passiveIncomeService.getPointsToAdd() > 1000)
                 dialog.getLabel().setFontScale(1.5f);
-            if(passiveIncomeService.getPointsToAdd()>10000)
+            if (passiveIncomeService.getPointsToAdd() > 10000)
                 dialog.getLabel().setFontScale(1.3f);
 
-            dialog.showDialog(stage,"passive income goined: \r\n         "+passiveIncomeService.getPointsToAdd());
+            dialog.showDialog(stage, "passive income goined: \r\n         " + passiveIncomeService.getPointsToAdd());
         }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        getCamera().update();
+        this.sb.setProjectionMatrix(getCamera().combined);
     }
 
     private void startTheMusic() {
