@@ -14,7 +14,7 @@ import Controllers.GameScreenController;
 /**
  * Created by Karol on 27.07.2016.
  */
-public abstract class AbstractScreen implements Screen {
+public abstract class AbstractScreen {
     protected Piersi game;
     protected Stage stage;
     private OrthographicCamera camera;
@@ -51,35 +51,13 @@ public abstract class AbstractScreen implements Screen {
 
     public abstract void render(SpriteBatch sb) ;
 
-    @Override
-    public void show() {
-    }
 
-    @Override
-    public void resume() {
-        game.setPaused(false);
-    }
-
-    @Override
-    public void pause() {
-        game.setPaused(true);
-    }
-
-    @Override
-    public void hide() {
-    }
+//    @Override
+//    public void pause() {
+//        game.setPaused(true);
+//    }
 
 
-    @Override
-    public void dispose() {
-        game.dispose();
-    }
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    public abstract AbstractScreen(GameScreenController gsc);
 
     public abstract void update(float dt);
     public abstract void handleInput();

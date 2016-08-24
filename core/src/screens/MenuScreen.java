@@ -19,15 +19,12 @@ public class MenuScreen extends AbstractScreen {
         background = new Texture("123.png");
 
     }
-    @Override
-    public void init(){
-        initPlayButton();
-    }
+//    @Override
+//    public void init(){
+//        initPlayButton();
+//    }
     @Override
     public void handleInput() {
-
-    }
-    private void initPlayButton() {
         playButton = new PlayButton(new IClickCallback() {
             @Override
             public void onClick() {
@@ -37,10 +34,13 @@ public class MenuScreen extends AbstractScreen {
         });
         stage.addActor(playButton);
     }
+//    private void initPlayButton() {
+//
+//    }
 
     @Override
     public void update(float dt) {
-
+handleInput();
     }
 
     @Override
@@ -50,6 +50,5 @@ public class MenuScreen extends AbstractScreen {
         sb.end();
 
     }
-
 
 }

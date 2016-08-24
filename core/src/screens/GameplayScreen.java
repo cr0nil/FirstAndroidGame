@@ -44,7 +44,7 @@ public class GameplayScreen extends AbstractScreen {
         initBgImg();
         initJumper();
         initPlayerButton();
-        initPlayerButtonRight();
+        // initPlayerButtonRight();
         initPointsLabel();
         initRestScoreButton();
         initFlyObj();
@@ -56,18 +56,19 @@ public class GameplayScreen extends AbstractScreen {
 
     @Override
     public void render(SpriteBatch sb) {
-        update();
+        getCamera().update();
+        this.sb.setProjectionMatrix(getCamera().combined);
 
         this.sb.begin();
-        stage.draw();
+        sb.draw();
         this.sb.end();
     }
 
-    @Override
-    public void pause() {
-        super.pause();
-        game.getScoreService().saveCurrentGameState();
-    }
+//    @Override
+//    public void pause() {
+//        super.pause();
+//        game.getScoreService().saveCurrentGameState();
+//    }
 
 
     private void initRandomEventController() {
@@ -78,6 +79,7 @@ public class GameplayScreen extends AbstractScreen {
     public void update(float dt) {
         pointsLabel.setText("Score :" + game.getScoreService().getPoints());
         stage.act();
+
     }
 
     private void initPassivIncomeService() {
@@ -99,28 +101,22 @@ public class GameplayScreen extends AbstractScreen {
         }
     }
 
-    @Override
-    public void render(SpriteBatch sb) {
-        getCamera().update();
-        this.sb.setProjectionMatrix(getCamera().combined);
-    }
-
     private void startTheMusic() {
         game.getSoundService().startPlayingMusic(true);
     }
 
-    private void initPlayerButtonRight() {
-        playerButtonRight = new PlayerButtonRight(new IClickCallback() {
-            @Override
-            public void onClick() {
-                jumper.reactiOnClickRight();
-
-
-                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
-            }
-        });
-        stage.addActor(playerButtonRight);
-    }
+//    private void initPlayerButtonRight() {
+//        playerButtonRight = new PlayerButtonRight(new IClickCallback() {
+//            @Override
+//            public void onClick() {
+//                jumper.reactiOnClickRight();
+//
+//
+//                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
+//            }
+//        });
+//        stage.addActor(playerButtonRight);
+//    }
 
     private void initFlyObj() {
         flyObj = new FlyingObjController(game, stage);
@@ -150,10 +146,8 @@ public class GameplayScreen extends AbstractScreen {
         playerButton = new PlayerButton(new IClickCallback() {
             @Override
             public void onClick() {
+                handleInput();
                 jumper.reactiOnClick();
-                if (Gdx.input.isTouched() == false) {
-                    jumper.reactionBack();
-                }
                 game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
         });

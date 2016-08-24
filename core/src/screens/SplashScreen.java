@@ -34,6 +34,10 @@ public class SplashScreen extends AbstractScreen {
 
     }
 
+    @Override
+    public void update(float dt) {
+
+    }
 
     @Override
     public void render(SpriteBatch sb) {
@@ -41,6 +45,8 @@ public class SplashScreen extends AbstractScreen {
         this.sb.draw(splashImg, 0, 0);
         this.sb.end();
     }
+
+
 
     private void WelcomeSound() {
         game.getSoundService().playWelcomeSound();
@@ -50,4 +56,5 @@ public class SplashScreen extends AbstractScreen {
     public void handleInput() {
 
     }
+
 }
