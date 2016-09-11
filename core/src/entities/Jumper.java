@@ -15,7 +15,7 @@ import UserInterface_UI.PlayerButton;
 /**
  * Created by Karol on 17.07.2016.
  */
-public class Jumper  {
+public class Jumper extends Image {
 //size
     private final static int WIDHT = 100;
     private final static int HEIGHT = 120;
@@ -23,41 +23,45 @@ public class Jumper  {
     private final static int STARTING_X = 200;
     private final static int STARTING_Y = 100;
 //movement
-    private Vector3 velocity;
-    private Vector3 position;
     private static final int GRAVITY = -15;
 
     public Jumper() {
         super(new Texture("12.png"));
+        this.setOrigin(WIDHT/2,HEIGHT/2);
+        this.setSize(WIDHT,HEIGHT);
+        this.setPosition(STARTING_X,STARTING_Y);
 
-        position= new Vector3(WIDHT, HEIGHT,0);
-        velocity=new Vector3(0,0,0);
     }
 
 
     public void reactiOnClick() {
 
-       velocity.add(0,GRAVITY,0);//change to (-displacement to left)
-        velocity.scl(1);
-        velocity.add(velocity.x,velocity.y,0);
-        velocity.scl(1/2);
-
+        int los1 = MathUtils.random(0, 60);
+        Action moveAction = Actions.sequence(
+                Actions.moveBy(los1, 15, 0, Interpolation.bounce),
+                Actions.moveBy(-los1, -15, 1, Interpolation.circle));
+        Action rotationAction = Actions.sequence(
+                Actions.rotateBy(70, 0.2f),
+                Actions.rotateBy(-140, 0.2f),
+                Actions.rotateBy(70, 0.2f));
+        this.addAction(rotationAction);
+        this.addAction(moveAction);
     }
 
-//    public void reactiOnClickRight() {
-//
-//        int los2 = MathUtils.random(0, 60);
-//        Action moveAction1 = Actions.sequence(
-//                Actions.moveBy(los2, 15, 0, Interpolation.bounce),
-//                Actions.moveBy(-los2, -15, 1, Interpolation.circle));
-//        Action rotationAction1 = Actions.sequence(
-//                Actions.rotateBy(70, 0.2f),
-//                Actions.rotateBy(-140, 0.2f),
-//                Actions.rotateBy(70, 0.2f));
-//
-//        this.addAction(rotationAction1);
-//        this.addAction(moveAction1);
-//    }
+    public void reactiOnClickRight() {
+
+        int los2 = MathUtils.random(0, 60);
+        Action moveAction1 = Actions.sequence(
+                Actions.moveBy(los2, 15, 0, Interpolation.bounce),
+                Actions.moveBy(-los2, -15, 1, Interpolation.circle));
+        Action rotationAction1 = Actions.sequence(
+                Actions.rotateBy(70, 0.2f),
+                Actions.rotateBy(-140, 0.2f),
+                Actions.rotateBy(70, 0.2f));
+
+        this.addAction(rotationAction1);
+        this.addAction(moveAction1);
+    }
 
 
 }

@@ -13,7 +13,7 @@ import com.firstx.cos.Piersi;
  */
 public class PlayButton extends Button {
     public PlayButton(final IClickCallback callback) {
-        super(preparePlayButtonstyle());
+        super(preparePlayButtonstyle1());
         init(callback);
     }
 
@@ -32,7 +32,7 @@ public class PlayButton extends Button {
             }
         });
     }
-    public static ButtonStyle preparePlayButtonstyle(){
+    public static ButtonStyle preparePlayButtonstyle1(){
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("ui-blue.atlas"));
         Skin skin = new Skin(atlas);
         ButtonStyle buttonStyle = new ButtonStyle();

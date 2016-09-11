@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.firstx.cos.Piersi;
 
-import Controllers.GameScreenController;
 import UserInterface_UI.IClickCallback;
 import UserInterface_UI.PlayButton;
 
@@ -14,17 +13,11 @@ import UserInterface_UI.PlayButton;
 public class MenuScreen extends AbstractScreen {
     private PlayButton playButton;
     private Texture background;
-    public MenuScreen(GameScreenController gsc) {
-        super(gsc);
-        background = new Texture("123.png");
 
-    }
-//    @Override
-//    public void init(){
-//        initPlayButton();
-//    }
-    @Override
-    public void handleInput() {
+
+    public MenuScreen(final Piersi game) {
+        super(game);
+        init();
         playButton = new PlayButton(new IClickCallback() {
             @Override
             public void onClick() {
@@ -32,23 +25,20 @@ public class MenuScreen extends AbstractScreen {
 //                game.getScoreService().restGameScore();
             }
         });
-        stage.addActor(playButton);
+        //stage.addActor(playButton);
     }
-//    private void initPlayButton() {
-//
-//    }
+    @Override
+    public void init(){
+        background=new Texture("123.png");
+    }
+
 
     @Override
-    public void update(float dt) {
-handleInput();
+    public void render(float delta) {
+        super.render(delta);
+        spriteBatch.begin();
+        spriteBatch.draw(background,0,0);
+        spriteBatch.draw(playButton,0,0);
+        spriteBatch.end();
     }
-
-    @Override
-    public void render(SpriteBatch sb) {
-        sb.begin();
-        sb.draw(background,0,0, Piersi.WIDTH,Piersi.HEIGHT);
-        sb.end();
-
-    }
-
 }

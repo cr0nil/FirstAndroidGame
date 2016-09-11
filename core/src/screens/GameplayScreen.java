@@ -54,29 +54,20 @@ public class GameplayScreen extends AbstractScreen {
         initRandomEventController();
     }
 
+
+
     @Override
-    public void render(SpriteBatch sb) {
-        getCamera().update();
-        this.sb.setProjectionMatrix(getCamera().combined);
-
-        this.sb.begin();
-        sb.draw();
-        this.sb.end();
+    public void pause() {
+        super.pause();
+        game.getScoreService().saveCurrentGameState();
     }
-
-//    @Override
-//    public void pause() {
-//        super.pause();
-//        game.getScoreService().saveCurrentGameState();
-//    }
 
 
     private void initRandomEventController() {
         eventController = new RandomEventController(game, stage);
     }
 
-    @Override
-    public void update(float dt) {
+    public void update() {
         pointsLabel.setText("Score :" + game.getScoreService().getPoints());
         stage.act();
 
@@ -105,18 +96,18 @@ public class GameplayScreen extends AbstractScreen {
         game.getSoundService().startPlayingMusic(true);
     }
 
-//    private void initPlayerButtonRight() {
-//        playerButtonRight = new PlayerButtonRight(new IClickCallback() {
-//            @Override
-//            public void onClick() {
-//                jumper.reactiOnClickRight();
-//
-//
-//                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
-//            }
-//        });
-//        stage.addActor(playerButtonRight);
-//    }
+    private void initPlayerButtonRight() {
+        playerButtonRight = new PlayerButtonRight(new IClickCallback() {
+            @Override
+            public void onClick() {
+                jumper.reactiOnClickRight();
+
+
+                game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
+            }
+        });
+        stage.addActor(playerButtonRight);
+    }
 
     private void initFlyObj() {
         flyObj = new FlyingObjController(game, stage);
@@ -146,7 +137,6 @@ public class GameplayScreen extends AbstractScreen {
         playerButton = new PlayerButton(new IClickCallback() {
             @Override
             public void onClick() {
-                handleInput();
                 jumper.reactiOnClick();
                 game.getScoreService().addPoint();// zmienic na dodwanie w przypadku kolizji
             }
