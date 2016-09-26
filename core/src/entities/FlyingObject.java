@@ -20,10 +20,10 @@ public class FlyingObject extends Image {
     }
 
     public final static String TITS = "tits.png";
-    public final static String MOON = "moon.png";
+    public final static String MOON = "fin.png";
 
-    private final static int WIDHT = 100;
-    private final static int HEIGHT = 100;
+    private final static int WIDHT = 70;
+    private final static int HEIGHT = 130;
 
     private final static int STARTING_X_1 = 0;
     private final static int STARTING_X_2 = Piersi.WIDTH;

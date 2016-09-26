@@ -24,7 +24,7 @@ public class Jumper extends Image {
     private Rectangle boudns;
 
     public Jumper() {
-        super(new Texture("12.png"));
+        super(new Texture("kwach.png"));
         this.setOrigin(WIDHT / 2, HEIGHT / 2);
         this.setSize(WIDHT, HEIGHT);
         this.setPosition(STARTING_X, STARTING_Y);
@@ -32,12 +32,11 @@ public class Jumper extends Image {
 
     }
 
-
     public void reactiOnClick() {
 
         // int los1 = MathUtils.random(0, 60);
         Action moveAction = Actions.sequence(
-                Actions.moveBy(-x, 95, 0, Interpolation.bounce));
+                Actions.moveBy(-x, 105, 0, Interpolation.bounce));
         //  Actions.moveBy(los1, -15, 1, Interpolation.circle));
         Action rotationAction = Actions.sequence(
                 Actions.rotateBy(70, 0.2f),
@@ -52,7 +51,7 @@ public class Jumper extends Image {
         //  int los2 = MathUtils.random(0, 60);
 
         Action moveAction1 = Actions.sequence(
-                Actions.moveBy(x, 95, 0, Interpolation.bounce));
+                Actions.moveBy(x, 105, 0, Interpolation.bounce));
         //   Actions.moveBy(-los2, -15, 1, Interpolation.circle));
         Action rotationAction1 = Actions.sequence(
                 Actions.rotateBy(70, 0.2f),
@@ -65,10 +64,10 @@ public class Jumper extends Image {
     public void gravity() {
         boudns.setPosition(getX(),getY());
         if (getX() < 60 || getX() > 340) {
-            x = 65;
+            x = 75;
         } else if (getX() < 110 || getX() > 240) {
-            x = 45;
-        } else x = 30;
+            x = 55;
+        } else x = 40;
         if(getY()>650){
             setPosition(getX(),600);
         }

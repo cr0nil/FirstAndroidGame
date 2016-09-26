@@ -21,7 +21,7 @@ public class SoundService {
         boobsSound = Gdx.audio.newSound(Gdx.files.internal("sound/oh.ogg"));
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/cdw.mp3"));
         welcomeSound =  Gdx.audio.newSound(Gdx.files.internal("sound/EA.wav"));
-        welcomeMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/pragne.mp3"));
+        welcomeMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/dobre.mp3"));
     }
 
     public void playBoobsSound(){
@@ -32,7 +32,7 @@ public class SoundService {
     }
 
     public void startPlayingMusic(boolean looped) {
-        music.setVolume(0.3f);
+        music.setVolume(0.5f);
      music.play();
         music.setLooping(looped);
     }
