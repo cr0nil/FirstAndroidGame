@@ -2,6 +2,7 @@ package screens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.firstx.cos.Piersi;
 
 import UserInterface_UI.IClickCallback;
@@ -12,7 +13,7 @@ import UserInterface_UI.PlayButton;
  */
 public class MenuScreen extends AbstractScreen {
     private PlayButton playButton;
-    private Texture background;
+    private Image background;
 
 
     public MenuScreen(final Piersi game) {
@@ -25,11 +26,13 @@ public class MenuScreen extends AbstractScreen {
 //                game.getScoreService().restGameScore();
             }
         });
-        //stage.addActor(playButton);
+        stage.addActor(playButton);
+        PlayMusicWelcome();
     }
     @Override
     public void init(){
-        background=new Texture("123.png");
+        background=new Image(new Texture("123.png"));
+        stage.addActor(background);
     }
 
 
@@ -37,8 +40,10 @@ public class MenuScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         spriteBatch.begin();
-        spriteBatch.draw(background,0,0);
-        spriteBatch.draw(playButton,0,0);
+        stage.draw();
         spriteBatch.end();
+    }
+    private void PlayMusicWelcome() {
+        game.getSoundService().PlayMusicWelcome();
     }
 }

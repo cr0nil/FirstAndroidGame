@@ -54,22 +54,24 @@ public class RandomEventController {
 
     private void tiggerDialog(String text){
         BasicDialog basicDialog = new BasicDialog();
-        basicDialog.getLabel().setFontScale(2);
+        basicDialog.getLabel().setFontScale(1.75f);
         basicDialog.showDialog(stage,text);
     }
     private void gainPassiveIncome() {
         game.getScoreService().getPasssivIncome();
-        tiggerDialog("You gained passive income");
+        tiggerDialog(" You gained passive income");
     }
 
     private void loseMoneyEvent() {
-        game.getScoreService().addPoints(-120);
-        tiggerDialog("You lose points 120");
+        int x = MathUtils.random(20,120);
+        game.getScoreService().addPoints(-x);
+        tiggerDialog(" You lose points \n"+"          "+x);
     }
 
     private void moneyEvent() {
-        game.getScoreService().addPoints(120);
-        tiggerDialog("FREE points");
+        int x = MathUtils.random(20,120);
+        game.getScoreService().addPoints(x);
+        tiggerDialog("   FREE points");
     }
 
 }

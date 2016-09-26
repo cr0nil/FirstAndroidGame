@@ -1,18 +1,19 @@
 package Controllers;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.firstx.cos.Piersi;
 
 import entities.FlyingObject;
+import entities.ObjToCollect;
 
 /**
  * Created by Karol on 12.08.2016.
  */
 public class FlyingObjController {
     public int spawnTime;
+
 
     public FlyingObjController(Piersi game, Stage stage) {
         init(game, stage);
@@ -38,7 +39,8 @@ public class FlyingObjController {
     }
 
     private void randomizeSpawnTime() {
-        spawnTime = MathUtils.random(3, 6);
+        spawnTime = MathUtils.random(6, 9);
+       // spawnTime1 = MathUtils.random(3,6);
     }
 
     private void addRandomFlyingObjToStage(Piersi game, Stage stage) {
@@ -48,6 +50,7 @@ public class FlyingObjController {
         } else {
             flyingObject = new FlyingObject(FlyingObject.FlyingObjectType.PASSIVE, game);
         }
+
         stage.addActor(flyingObject);
         flyingObject.fly();
         //if(flyingObject.overlaps(Piersi.WIDTH))

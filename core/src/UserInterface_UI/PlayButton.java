@@ -20,8 +20,8 @@ public class PlayButton extends Button {
     private void init(final IClickCallback callback) {
         this.setWidth(80);
         this.setHeight(80);
-        this.setX(Piersi.WIDTH/2);
-        this.setY(Piersi.HEIGHT/2);
+        this.setX(Piersi.WIDTH/2-20);
+        this.setY(Piersi.HEIGHT/2-100);
         // this.setDebug(true);
 
         this.addListener(new ClickListener(){
